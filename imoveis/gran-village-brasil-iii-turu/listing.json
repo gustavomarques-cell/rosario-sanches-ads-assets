@@ -1,0 +1,72 @@
+{
+  "id": "gran-village-brasil-iii-turu-695",
+  "slug": "gran-village-brasil-iii-turu",
+  "status": "a-venda",
+  "title": "Apartamento à venda no Gran Village Brasil III",
+  "condominium": "Gran Village Brasil III",
+  "category": "Apartamento",
+  "address": {
+    "street": "Avenida General Arthur Carvalho",
+    "number": "695",
+    "neighborhood": "Turu",
+    "city": "São Luís",
+    "state": "MA"
+  },
+  "floor": "Térreo",
+  "price_brl": 320000,
+  "area_m2": 57,
+  "bedrooms": 2,
+  "suites": 1,
+  "bathrooms": 2,
+  "features": [
+    "Banheiro social",
+    "Varanda gourmet",
+    "Cozinha americana",
+    "Área de lazer completa",
+    "Academia",
+    "Mercadinho do Mateus",
+    "Gás canalizado",
+    "Sanca com LED",
+    "Box nos banheiros",
+    "Blindex na varanda"
+  ],
+  "parking_spaces": null,
+  "contact_whatsapp": "5598984231791",
+  "photographs": [
+    {
+      "file": "01-fachada-terreo.webp",
+      "alt": "Fachada e varanda do apartamento"
+    },
+    {
+      "file": "02-sala-sanca-led.webp",
+      "alt": "Sala com sanca"
+    },
+    {
+      "file": "03-area-externa-condominio.webp",
+      "alt": "Área externa entre os blocos do condomínio"
+    },
+    {
+      "file": "04-varanda-blindex.webp",
+      "alt": "Varanda com blindex"
+    },
+    {
+      "file": "05-cozinha-americana.webp",
+      "alt": "Cozinha americana"
+    },
+    {
+      "file": "06-banheiro-box-vidro.webp",
+      "alt": "Banheiro com box de vidro"
+    },
+    {
+      "file": "07-circulacao-quartos.webp",
+      "alt": "Circulação dos quartos"
+    },
+    {
+      "file": "08-sala-varanda.webp",
+      "alt": "Vista interna para a varanda"
+    }
+  ],
+  "notes": "Dados fornecidos pelo anunciante; confirmar disponibilidade, documentação e características antes de publicar. Não inventar vagas de garagem. Fotos originais fornecidas pelo anunciante.",
+  "source": "Anúncio enviado pela Rosário Sanches",
+  "published_to_lovable": false
+}

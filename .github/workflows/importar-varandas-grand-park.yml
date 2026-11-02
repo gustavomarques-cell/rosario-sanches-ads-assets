@@ -42,7 +42,7 @@ jobs:
               result = gdown.download(id=id, output=str(path), quiet=False)
               if result is None or not path.exists() or path.stat().st_size < 100000:
                   raise RuntimeError(f"Download invalido ou inacessivel: {name}")
-              if name.endswith(".png") and path.open("rb").read(8) != b"\\x89PNG\\r\\n\\x1a\\n":
+              if name.endswith(".png") and path.open("rb").read(8) != bytes([137,80,78,71,13,10,26,10]):
                   raise RuntimeError(f"Arquivo nao e PNG: {name}")
               if name.endswith(".mp4") and b"ftyp" not in path.open("rb").read(32):
                   raise RuntimeError(f"Arquivo nao e MP4: {name}")

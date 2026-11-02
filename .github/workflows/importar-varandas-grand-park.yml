@@ -39,7 +39,7 @@ jobs:
               if path.exists() and path.stat().st_size > 100000:
                   print("Mantido", name, path.stat().st_size)
                   continue
-              result = gdown.download(id=id, output=str(path), quiet=False, fuzzy=True)
+              result = gdown.download(id=id, output=str(path), quiet=False)
               if result is None or not path.exists() or path.stat().st_size < 100000:
                   raise RuntimeError(f"Download invalido ou inacessivel: {name}")
               if name.endswith(".png") and path.open("rb").read(8) != b"\\x89PNG\\r\\n\\x1a\\n":

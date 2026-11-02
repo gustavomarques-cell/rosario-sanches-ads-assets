@@ -1,0 +1,56 @@
+name: Importar criativos Varandas Grand Park do Drive
+on:
+  push:
+    paths:
+      - '.github/workflows/importar-varandas-grand-park.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Instalar downloader
+        run: python -m pip install --quiet gdown
+      - name: Baixar os 8 arquivos originais do Google Drive
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import gdown
+          files = {
+            "anuncio-01.png": "1-B1C2HmrbD470tW0kAskX1SkrLVHUVDx",
+            "anuncio-02.png": "12K0dpP8H7HPijkZ9TEC_d4hiE9a1VvsJ",
+            "carrossel-01.png": "1WjugTluieFCGW9Yn1jJKr_mTlNWQoNvI",
+            "carrossel-02.png": "1ehO2PEtHuYLWEsrHrl9f_GAmeiJHR_jA",
+            "carrossel-03.png": "1drrBKMudQ3asqM2c8hxYKtfJmyBTEqFx",
+            "carrossel-04.png": "1Vi87kzKOvCyFpfR8Bc3hsfYAO3rP_naJ",
+            "carrossel-05.png": "1LnYqM7kLjTkYjgCxUXJGv3SUIOyjokf0",
+            "anuncio-video.mp4": "1eMYSz2OI_Uu7QfTk5BgTI5zEm6QKruL8",
+          }
+          dest = Path("varandas-grand-park-2026")
+          dest.mkdir(parents=True, exist_ok=True)
+          for name, id in files.items():
+              path = dest / name
+              if path.exists() and path.stat().st_size > 100000:
+                  print("Mantido", name, path.stat().st_size)
+                  continue
+              result = gdown.download(id=id, output=str(path), quiet=False, fuzzy=True)
+              if result is None or not path.exists() or path.stat().st_size < 100000:
+                  raise RuntimeError(f"Download invalido ou inacessivel: {name}")
+              if name.endswith(".png") and path.open("rb").read(8) != b"\\x89PNG\\r\\n\\x1a\\n":
+                  raise RuntimeError(f"Arquivo nao e PNG: {name}")
+              if name.endswith(".mp4") and b"ftyp" not in path.open("rb").read(32):
+                  raise RuntimeError(f"Arquivo nao e MP4: {name}")
+              print("OK", name, path.stat().st_size, "bytes")
+          PY
+      - name: Commit dos originais
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add varandas-grand-park-2026/
+          git diff --cached --quiet || (git commit -m "Adiciona criativos originais Varandas Grand Park 2026" && git push)
